@@ -5,5 +5,4 @@ este proyecto esta diseñado para liquidación de nómina que tiene como finalid
 
 ## autor 
 
-Juan Manuel Moreno Muñoz 
-Edwin *****
+Juan Manuel Moreno Muñoz y Edwin -----
