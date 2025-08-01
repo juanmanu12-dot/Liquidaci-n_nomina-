@@ -5,4 +5,4 @@ este proyecto esta diseñado para liquidación de nómina que tiene como finalid
 
 ## autor 
 
-Juan Manuel Moreno Muñoz y Edwin -----
+Juan Manuel Moreno Muñoz y Edwin -----  estudiantes de ingenieria en sistemas con la asesoria de codigo limpio y experto en este tema presente en la universidad de medellin 
