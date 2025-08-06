@@ -1,0 +1,113 @@
+import unittest
+import test
+
+
+class TestLiquidacionNomina(unittest.TestCase):
+
+    def test_caso_normal_1(self):
+        salario = 1_500_000
+        extra_nocturna = 109_375
+        aux_transporte = 162_000
+        salud = 70_855
+        pension = 70_855
+        esperado_neto = 1_629_665.00
+
+        cesantias = 147_614.58
+        intereses = 1_476.15
+        prima = 147_614.58
+        vacaciones = 62_500
+        esperado_provisiones = 359_205.31
+
+        salud_emp = 127_500
+        pension_emp = 180_000
+        arl = 7_830
+        caja = 60_000
+        icbf = 45_000
+        sena = 30_000
+        esperado_aportes = 450_330.00
+
+        self.assertEqual(test.calcular_neto_a_pagar(salario, extra_nocturna, aux_transporte, salud, pension),esperado_neto)
+        self.assertEqual(test.calcular_provisiones(cesantias, intereses, prima, vacaciones),esperado_provisiones)
+        self.assertEqual(test.calcular_aportes_empleador(salud_emp, pension_emp, arl, caja, icbf, sena),esperado_aportes)
+
+    def test_caso_normal_2(self):
+        salario = 1_200_000
+        extra_nocturna = 85_000
+        aux_transporte = 162_000
+        salud = 56_000
+        pension = 56_000
+        esperado_neto = 1_335_000.00
+
+        cesantias = 123_583.33
+        intereses = 1_235.83
+        prima = 123_583.33
+        vacaciones = 50_000
+        esperado_provisiones = 298_402.49
+
+        salud_emp = 102_000
+        pension_emp = 144_000
+        arl = 6_240
+        caja = 48_000
+        icbf = 36_000
+        sena = 24_000
+        esperado_aportes = 360_240.00
+
+        self.assertEqual(test.calcular_neto_a_pagar(salario, extra_nocturna, aux_transporte, salud, pension),esperado_neto)
+        self.assertEqual(test.calcular_provisiones(cesantias, intereses, prima, vacaciones),esperado_provisiones)
+        self.assertEqual(test.calcular_aportes_empleador(salud_emp, pension_emp, arl, caja, icbf, sena),esperado_aportes)
+
+    def test_caso_normal_3(self):
+        salario = 2_000_000
+        extra_nocturna = 150_000
+        aux_transporte = 0
+        salud = 94_000
+        pension = 94_000
+        esperado_neto = 1_962_000.00
+
+        cesantias = 179_166.67
+        intereses = 1_791.67
+        prima = 179_166.67
+        vacaciones = 83_333.33
+        esperado_provisiones = 443_458.34
+
+        salud_emp = 170_000
+        pension_emp = 240_000
+        arl = 10_440
+        caja = 80_000
+        icbf = 60_000
+        sena = 40_000
+        esperado_aportes = 600_440.00
+
+        self.assertEqual(test.calcular_neto_a_pagar(salario, extra_nocturna, aux_transporte, salud, pension),esperado_neto)
+        self.assertEqual(test.calcular_provisiones(cesantias, intereses, prima, vacaciones),esperado_provisiones)
+        self.assertEqual(test.calcular_aportes_empleador(salud_emp, pension_emp, arl, caja, icbf, sena),esperado_aportes)
+
+    def test_caso_normal_4(self):
+        salario = 980_000
+        extra_nocturna = 50_000
+        aux_transporte = 162_000
+        salud = 45_000
+        pension = 45_000
+        esperado_neto = 1_102_000.00
+
+        cesantias = 100_166.67
+        intereses = 1_001.67
+        prima = 100_166.67
+        vacaciones = 40_833.33
+        esperado_provisiones = 242_168.34
+
+        salud_emp = 83_300
+        pension_emp = 117_600
+        arl = 5_096
+        caja = 39_200
+        icbf = 29_400
+        sena = 19_600
+        esperado_aportes = 294_196.00
+
+        self.assertEqual(test.calcular_neto_a_pagar(salario, extra_nocturna, aux_transporte, salud, pension),esperado_neto)
+        self.assertEqual(test.calcular_provisiones(cesantias, intereses, prima, vacaciones),esperado_provisiones)
+        self.assertEqual(test.calcular_aportes_empleador(salud_emp, pension_emp, arl, caja, icbf, sena),esperado_aportes)
+
+
+if __name__ == '__main__':
+    unittest.main()
