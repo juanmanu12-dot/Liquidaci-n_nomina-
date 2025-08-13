@@ -111,3 +111,72 @@ class TestLiquidacionNomina(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+
+# casos extrordinarios 
+
+# === CASO EXTRAORDINARIO 2 ===
+def verificar_caso_2(salario, total_devengado, salud, pension, total_deducciones, neto_pagar):
+    calc_salud = salario * 0.01
+    calc_pension = salario * 0.01
+    calc_total_deducciones = calc_salud + calc_pension
+    calc_neto_pagar = total_devengado - calc_total_deducciones
+
+    return {
+        "Salud_correcta": abs(calc_salud - salud) < 1,
+        "Pension_correcta": abs(calc_pension - pension) < 1,
+        "Total_deducciones_correcto": abs(calc_total_deducciones - total_deducciones) < 1,
+        "Neto_pagar_correcto": abs(calc_neto_pagar - neto_pagar) < 1
+    }
+
+
+# === CASO EXTRAORDINARIO 3 ===
+def verificar_caso_3(salario, cesantias, intereses, prima, vacaciones, total_provisiones):
+    calc_cesantias = salario / 12
+    calc_intereses = calc_cesantias * 0.01
+    calc_prima = salario / 12
+    calc_vacaciones = salario * (15 / 360)
+    calc_total_provisiones = calc_cesantias + calc_intereses + calc_prima + calc_vacaciones
+
+    return {
+        "Cesantias_correctas": abs(calc_cesantias - cesantias) < 1,
+        "Intereses_correctos": abs(calc_intereses - intereses) < 1,
+        "Prima_correcta": abs(calc_prima - prima) < 1,
+        "Vacaciones_correctas": abs(calc_vacaciones - vacaciones) < 1,
+        "Total_provisiones_correcto": abs(calc_total_provisiones - total_provisiones) < 1
+    }
+
+
+# === CASO EXTRAORDINARIO 4 ===
+def verificar_caso_4(salario, salud, pension, arl, caja, icbf, sena, total_aportes):
+    calc_salud = salario * 0.085
+    calc_pension = salario * 0.12
+    calc_arl = salario * 0.00522
+    calc_caja = salario * 0.04
+    calc_icbf = salario * 0.03
+    calc_sena = salario * 0.02
+    calc_total_aportes = calc_salud + calc_pension + calc_arl + calc_caja + calc_icbf + calc_sena
+
+    return {
+        "Salud_correcta": abs(calc_salud - salud) < 1,
+        "Pension_correcta": abs(calc_pension - pension) < 1,
+        "ARL_correcta": abs(calc_arl - arl) < 1,
+        "Caja_correcta": abs(calc_caja - caja) < 1,
+        "ICBF_correcto": abs(calc_icbf - icbf) < 1,
+        "SENA_correcto": abs(calc_sena - sena) < 1,
+        "Total_aportes_correcto": abs(calc_total_aportes - total_aportes) < 1
+    }
+
+
+# ===== EJEMPLO DE USO =====
+if __name__ == "__main__":
+    # Caso 2
+    print("CASO 2:", verificar_caso_2(1_500_000, 1_500_000, 150_000, 150_000, 300_000, 1_200_000))
+
+    # Caso 3
+    print("CASO 3:", verificar_caso_3(1_500_000, 125_000, 1_250, 125_000, 62_500, 313_750))
+
+    # Caso 4
+    print("CASO 4:", verificar_caso_4(1_500_000, 127_500, 180_000, 7_830, 60_000, 45_000, 30_000, 450_330))
+
