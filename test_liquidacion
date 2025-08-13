@@ -108,6 +108,114 @@ class TestLiquidacionNomina(unittest.TestCase):
         self.assertEqual(test.calcular_provisiones(cesantias, intereses, prima, vacaciones),esperado_provisiones)
         self.assertEqual(test.calcular_aportes_empleador(salud_emp, pension_emp, arl, caja, icbf, sena),esperado_aportes)
 
+    def test_caso_extraordinario_2(self):
+        salario = 1_500_000
+        extra_nocturna = 0
+        aux_transporte = 0
+        salud = 150_000
+        pension = 150_000
+        esperado_neto = 1_200_000.00
+
+        cesantias = 125_000
+        intereses = 1_250
+        prima = 125_000
+        vacaciones = 62_500
+        esperado_provisiones = 313_750.00
+
+        salud_emp = 127_500
+        pension_emp = 180_000
+        arl = 7_830
+        caja = 60_000
+        icbf = 45_000
+        sena = 30_000
+        esperado_aportes = 450_330.00
+
+        self.assertEqual(
+            test.calcular_neto_a_pagar(salario, extra_nocturna, aux_transporte, salud, pension),
+            esperado_neto
+        )
+        self.assertEqual(
+            test.calcular_provisiones(cesantias, intereses, prima, vacaciones),
+            esperado_provisiones
+        )
+        self.assertEqual(
+            test.calcular_aportes_empleador(salud_emp, pension_emp, arl, caja, icbf, sena),
+            esperado_aportes
+        )
+
+    # ================== CASO EXTRAORDINARIO 3 ==================
+    def test_caso_extraordinario_3(self):
+        salario = 1_500_000
+        extra_nocturna = 0
+        aux_transporte = 0
+        salud = 15_000
+        pension = 15_000
+        esperado_neto = 1_470_000.00
+
+        cesantias = 125_000
+        intereses = 1_250
+        prima = 125_000
+        vacaciones = 62_500
+        esperado_provisiones = 313_750.00
+
+        salud_emp = 127_500
+        pension_emp = 180_000
+        arl = 7_830
+        caja = 60_000
+        icbf = 45_000
+        sena = 30_000
+        esperado_aportes = 450_330.00
+
+        self.assertEqual(
+            test.calcular_neto_a_pagar(salario, extra_nocturna, aux_transporte, salud, pension),
+            esperado_neto
+        )
+        self.assertEqual(
+            test.calcular_provisiones(cesantias, intereses, prima, vacaciones),
+            esperado_provisiones
+        )
+        self.assertEqual(
+            test.calcular_aportes_empleador(salud_emp, pension_emp, arl, caja, icbf, sena),
+            esperado_aportes
+        )
+
+    # ================== CASO EXTRAORDINARIO 4 ==================
+    def test_caso_extraordinario_4(self):
+        salario = 1_500_000
+        extra_nocturna = 0
+        aux_transporte = 0
+        salud = 15_000
+        pension = 15_000
+        esperado_neto = 1_470_000.00
+
+        cesantias = 125_000
+        intereses = 1_250
+        prima = 125_000
+        vacaciones = 62_500
+        esperado_provisiones = 313_750.00
+
+        salud_emp = 127_500
+        pension_emp = 180_000
+        arl = 7_830
+        caja = 60_000
+        icbf = 45_000
+        sena = 30_000
+        esperado_aportes = 450_330.00
+
+        self.assertEqual(
+            test.calcular_neto_a_pagar(salario, extra_nocturna, aux_transporte, salud, pension),
+            esperado_neto
+        )
+        self.assertEqual(
+            test.calcular_provisiones(cesantias, intereses, prima, vacaciones),
+            esperado_provisiones
+        )
+        self.assertEqual(
+            test.calcular_aportes_empleador(salud_emp, pension_emp, arl, caja, icbf, sena),
+            esperado_aportes
+        )
+
+
 
 if __name__ == '__main__':
     unittest.main()
