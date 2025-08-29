@@ -4,7 +4,7 @@ sys.path.append("src")
 
 import unittest
 
-from model import test
+from model import liquidacion
 
 
 def esperado_neto(salario, dias, h_extra_d, h_extra_n, h_extra_dom, aplica_aux):
@@ -264,5 +264,6 @@ class TestLiquidacionNomina(unittest.TestCase):
 if _name_ == '_main_':
 
     unittest.main()
+
 
 
