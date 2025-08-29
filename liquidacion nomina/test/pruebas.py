@@ -40,7 +40,7 @@ def esperado_aportes_empleador(salario):
 class TestLiquidacionNomina(unittest.TestCase):
 
     
-    # CASOS NORMALES
+    
     
     def test_caso_normal_1(self):
         # 10 horas extra nocturnas ≈ 109,375 para salario 1'500,000
@@ -112,7 +112,7 @@ class TestLiquidacionNomina(unittest.TestCase):
         )
 
     
-    # CASOS EXTRAORDINARIOS
+    
     def test_caso_extraordinario_1(self):
         # Sin extras ni aux
         salario, dias = 1_500_000, 30
@@ -186,7 +186,7 @@ class TestLiquidacionNomina(unittest.TestCase):
         )
 
     
-    # CASOS DE ERROR 
+    
     
     def test_caso_error_1(self):
         # Horas negativas (el nuevo test.py no lanza error: verifica el cálculo)
@@ -262,4 +262,5 @@ class TestLiquidacionNomina(unittest.TestCase):
 
 
 if _name_ == '_main_':
+
     unittest.main()
