@@ -1,5 +1,5 @@
 
-AUX_TRANSPORTE = 162000  # Valor 2025 aprox
+AUX_TRANSPORTE = 162000  
 PORC_SALUD = 0.04
 PORC_PENSION = 0.04
 
@@ -39,7 +39,7 @@ def calcular_neto_a_pagar(salario, dias, h_extra_d, h_extra_n, h_extra_dom, apli
     return total_ingresos - deducciones
 
 def calcular_provisiones(salario, dias):
-    # Cesantías, intereses, prima y vacaciones
+    
     cesantias = salario * dias / 360
     intereses = cesantias * 0.12
     prima = salario * dias / 360
@@ -55,3 +55,4 @@ def calcular_aportes_empleador(salario):
     sena = salario * PORC_SENA
 
     return salud + pension + arl + caja + icbf + sena    
+
