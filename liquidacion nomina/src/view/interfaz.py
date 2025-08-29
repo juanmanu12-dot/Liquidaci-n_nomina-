@@ -1,7 +1,7 @@
 import sys
 sys.path.append("src")
 
-from model import test
+from model import liquidacion
 
 
 try:
@@ -45,3 +45,4 @@ except ValueError:
 except Exception as e:
 
     print("No se puede calcular la nómina: " + str(e))
+
