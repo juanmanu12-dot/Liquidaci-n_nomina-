@@ -150,7 +150,7 @@ class TestLiquidacionNomina(unittest.TestCase):
         )
 
     def test_caso_extraordinario_3(self):
-        # Extras dominicales
+        
         salario, dias = 2_000_000, 30
         h_d, h_n, h_dom, aplica_aux = 0, 0, 8, False
 
@@ -264,4 +264,5 @@ class TestLiquidacionNomina(unittest.TestCase):
 if _name_ == '_main_':
 
     unittest.main()
+
 
