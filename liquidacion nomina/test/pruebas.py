@@ -6,7 +6,7 @@ import unittest
 
 from model import test
 
-# Helpers para calcular los esperados según el nuevo test
+
 def esperado_neto(salario, dias, h_extra_d, h_extra_n, h_extra_dom, aplica_aux):
     valor_hora = test.calcular_valor_hora(salario)
     extra_d = h_extra_d * valor_hora * 1.25
@@ -114,7 +114,7 @@ class TestLiquidacionNomina(unittest.TestCase):
     
     
     def test_caso_extraordinario_1(self):
-        # Sin extras ni aux
+        
         salario, dias = 1_500_000, 30
         h_d, h_n, h_dom, aplica_aux = 0, 0, 0, False
 
@@ -132,7 +132,7 @@ class TestLiquidacionNomina(unittest.TestCase):
         )
 
     def test_caso_extraordinario_2(self):
-        # 15 días, pocas extras, sin aux
+        
         salario, dias = 1_000_000, 15
         h_d, h_n, h_dom, aplica_aux = 0, 5, 0, False
 
@@ -168,7 +168,7 @@ class TestLiquidacionNomina(unittest.TestCase):
         )
 
     def test_caso_extraordinario_4(self):
-        # 20 días, sin extras, sin aux
+        
         salario, dias = 1_200_000, 20
         h_d, h_n, h_dom, aplica_aux = 0, 0, 0, False
 
@@ -189,7 +189,7 @@ class TestLiquidacionNomina(unittest.TestCase):
     
     
     def test_caso_error_1(self):
-        # Horas negativas (el nuevo test.py no lanza error: verifica el cálculo)
+        
         salario, dias = 1_500_000, 30
         h_d, h_n, h_dom, aplica_aux = 0, -5, 0, True
 
@@ -207,7 +207,7 @@ class TestLiquidacionNomina(unittest.TestCase):
         )
 
     def test_caso_error_2(self):
-        # Más de 30 días (el nuevo test.py lo toma proporcional)
+        
         salario, dias = 1_200_000, 31
         h_d, h_n, h_dom, aplica_aux = 0, 4, 0, True
 
@@ -225,7 +225,7 @@ class TestLiquidacionNomina(unittest.TestCase):
         )
 
     def test_caso_error_3(self):
-        # Salario alto con aux=True (el nuevo test.py paga aux si se indica)
+        
         salario, dias = 2_000_000, 30
         h_d, h_n, h_dom, aplica_aux = 5, 5, 5, True
 
@@ -243,7 +243,7 @@ class TestLiquidacionNomina(unittest.TestCase):
         )
 
     def test_caso_error_4(self):
-        # Salario 0, días 0 (todo en 0)
+        
         salario, dias = 1_000_000, 0
         h_d, h_n, h_dom, aplica_aux = 0, 0, 0, False
 
@@ -264,3 +264,4 @@ class TestLiquidacionNomina(unittest.TestCase):
 if _name_ == '_main_':
 
     unittest.main()
+
