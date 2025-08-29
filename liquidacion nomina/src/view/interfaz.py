@@ -6,7 +6,7 @@ from model import test
 
 try:
     
-    # ENTRADAS DEL USUARIO
+    
     
     nombre = input("Ingrese el nombre del empleado: ")
     salario = float(input("Ingrese el salario mensual: "))
@@ -17,7 +17,7 @@ try:
     aplica_aux = input("¿Aplica auxilio de transporte? (s/n): ").strip().lower()
 
  
-    # PROCESOS (llamadas al módulo)
+    
   
     neto = test.calcular_neto_a_pagar(
         salario,
@@ -31,7 +31,7 @@ try:
     provisiones = test.calcular_provisiones(salario, dias_trabajados)
     aportes = test.calcular_aportes_empleador(salario)
 
-    # SALIDAS
+    
     
     print("\n--- LIQUIDACIÓN DE NÓMINA ---")
     print(f"Empleado                  : {nombre}")
@@ -43,4 +43,5 @@ except ValueError:
     print("Por favor verifique los datos ingresados (se esperaba un número).")
 
 except Exception as e:
+
     print("No se puede calcular la nómina: " + str(e))
