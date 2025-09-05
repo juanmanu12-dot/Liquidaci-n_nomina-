@@ -10,5 +10,11 @@ Esta aplicación no solo reduce significativamente los errores humanos y el tiem
 
 Además, genera reportes detallados, comprobantes de pago y facilita la transparencia en la relación entre empleador y empleado.  
 
+# Instrucciones para ejecutar las pruebas unitarias en el README
 
+para ejecutar las pruebas unitarias en el cmd tienes que ubicarte en la raiz del proyecto y poner el siguiente comando : py -m unittest test.pruebas
+
+# Instrucciones para ejecutar la interfaz de Consola en el README
+
+para ejecutar la interfaz en el cmd tienes que ubicarte en la raiz del proyecto y poner el siguiente comando : py -m src.view.interfaz
 
