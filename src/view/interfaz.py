@@ -35,7 +35,7 @@ def ejecutar_liquidacion():
         aportes_empleador = liquidacion.calcular_aportes_empleador(salario_mensual)
 
         # SALIDAS
-        print("\n=== LIQUIDACIÓN DE NÓMINA ===")
+        print("\n======= LIQUIDACIÓN DE NÓMINA =======")
         print(f"Empleado              : {nombre_empleado}")
         print(f"Neto a pagar          : ${neto_a_pagar:,.2f}")
         print(f"Total provisiones     : ${total_provisiones:,.2f}")
