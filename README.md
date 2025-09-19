@@ -1,6 +1,3 @@
-
----
-
 #  Liquidación de Nómina
 
 ##  ¿Qué es la liquidación de nómina?
@@ -103,28 +100,49 @@ total_aportes = salud + pension + ARL + caja + ICBF + SENA
 ```
 
 ---
+## Requisitos previos
+* se necesita Python 3.8+ instalado.
+*Sistema operativo Windows, Linux o MacOS
 
-##  Ejecución de la interfaz de consola
+## instrucciones de uso
+-clonar el repositorio:https://github.com/juanmanu12-dot/Liquidaci-n_nomina-.git -Entrar al proyecto: Liquidaci-n_nomina- -Ejecutar el programa:python main.py -Ejecutar pruebas unitarias: python -m unittest discover
 
-Para correr el programa desde la raíz del proyecto, usa:
+## Cómo ejecutar la aplicación en consola
+1.Abre la terminal en Visual Studio Code.
+2.Navega a la carpeta raíz del proyecto:
 
 ```bash
-py -m src.view.interfaz
+cd "Liquidaci-n_nomina-" (entras a la carpeta principal)
+```
+3.Ejecuta el archivo principal de la interfaz
+
+```bash
+python src/view/interfaz.py
 ```
 
-Esto pedirá los datos por consola y mostrará el cálculo de la nómina.
+4.Ingresa los datos solicitados en la consola para simular la liquidacion de nomina 
+Esto iniciará la interfaz de consola y podrás realizar simulaciones directamente desde la terminal
 
----
+## Cómo ejecutar los tests
 
-##  Ejecución de pruebas unitarias
+1.Abre la terminal ya sea en Visual Studio Code o usando cmd.
+2.Navega a la carpeta del proyecto(Por Ejemplo):
+```bash
+cmd
+cd "Liquidaci-n_nomina-"
+```
+
+3.Ejecuta el archivo de test con unittest:
+cmd
+py test/test_Liquidaci-n_nomina-.py
+
 
 Para ejecutar las pruebas, desde la raíz del proyecto:
 
 ```bash
-py -m unittest test.pruebas
+py  test/ pruebas.py
 ```
-
-Esto validará automáticamente todos los casos normales, extraordinarios y de error.
+Esto ejecutará todas las pruebas y mostrará los resultados
 
 
 
@@ -134,6 +152,13 @@ Esto validará automáticamente todos los casos normales, extraordinarios y de e
 * Reduce errores humanos.
 * Cumple con normativas laborales vigentes.
 * Permite pruebas automatizadas para asegurar la precisión de los cálculos.
+
+## Integrantes 
+
+* moises Joshua Herrera Galindo 
+* Nicol Valeria Atehortua Atehortua 
+* Francisco Gomes Gomes
+
 
 
 
