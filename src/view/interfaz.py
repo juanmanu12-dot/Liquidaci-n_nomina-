@@ -1,6 +1,11 @@
 import sys
 import os
 
+
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+sys.path.append(BASE_DIR)
+
+from src.model import liquidacion
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
@@ -14,50 +19,6 @@ from kivy.core.window import Window
 
 Window.size = (700, 520)
 
-
-# ===============================
-# Funciones de liquidación
-# ===============================
-
-def calcular_neto_a_pagar(salario, dias, he_d, he_n, he_dom, aux):
-    # salario diario (30 días calendario)
-    salario_dia = salario / 30
-    salario_base = salario_dia * dias
-
-    # valor hora
-    valor_hora = salario / 240  # 240 = 30 días * 8 horas
-
-    # recargos
-    he_diurnas = he_d * valor_hora * 1.25
-    he_nocturnas = he_n * valor_hora * 1.75
-    he_dominicales = he_dom * valor_hora * 2.0
-
-    aux_transporte = 162000 if aux else 0  # valor fijo 2025 (ejemplo)
-
-    return salario_base + he_diurnas + he_nocturnas + he_dominicales + aux_transporte
-
-
-def calcular_provisiones(salario, dias):
-    # cesantías + intereses + primas + vacaciones (aproximado proporcional)
-    base = salario / 30 * dias
-    cesantias = base * 0.0833
-    intereses = cesantias * 0.01
-    primas = base * 0.0833
-    vacaciones = base * 0.0417
-    return cesantias + intereses + primas + vacaciones
-
-
-def calcular_aportes_empleador(salario):
-    salud = salario * 0.085
-    pension = salario * 0.12
-    arl = salario * 0.00522
-    parafiscales = salario * 0.09
-    return salud + pension + arl + parafiscales
-
-
-# ===============================
-# Interfaz Kivy
-# ===============================
 
 class NominaForm(BoxLayout):
     resultado_texto = StringProperty("")
