@@ -1,9 +1,5 @@
-"""
-Interfaz Kivy (archivo puro .py, sin .kv)
-Requiere: Kivy 2.2.0 (recomendado). Más reciente puede funcionar.
-
-Guarda este código como `kivy_interface.py` y ejecútalo con `python kivy_interface.py`.
-"""
+import sys
+import os
 
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
@@ -16,37 +12,52 @@ from kivy.uix.checkbox import CheckBox
 from kivy.properties import StringProperty, BooleanProperty
 from kivy.core.window import Window
 
-# opcional: tamaño inicial de la ventana
 Window.size = (700, 520)
 
-# Intentamos importar el módulo `liquidacion` que usabas en tu fichero original.
-# Si no está disponible, definimos una implementación de respaldo simple
-try:
-    from src.model import liquidacion
-    _HAS_LIQ = True
-except Exception as e:
-    _HAS_LIQ = False
 
-    class _DummyLiquidacion:
-        @staticmethod
-        def calcular_neto_a_pagar(salario_mensual, dias_trabajados, he_diurnas, he_nocturnas, he_dominicales, auxilio):
-            # estimación muy básica: proporción por días trabajados + pagas por horas extra
-            diario = salario_mensual / 30.0
-            base = diario * dias_trabajados
-            he_pag = (he_diurnas * diario * 0.05) + (he_nocturnas * diario * 0.06) + (he_dominicales * diario * 0.08)
-            aux = 117172 if auxilio else 0  # número ejemplo (Colombia 2024 aprox.) — sólo ilustrativo
-            return base + he_pag + aux
+# ===============================
+# Funciones de liquidación
+# ===============================
 
-        @staticmethod
-        def calcular_provisiones(salario_mensual, dias_trabajados):
-            return salario_mensual * 0.0833  # provisión mensual aproximada (ejemplo)
+def calcular_neto_a_pagar(salario, dias, he_d, he_n, he_dom, aux):
+    # salario diario (30 días calendario)
+    salario_dia = salario / 30
+    salario_base = salario_dia * dias
 
-        @staticmethod
-        def calcular_aportes_empleador(salario_mensual):
-            return salario_mensual * 0.30  # aporte empleador aproximado (ejemplo)
+    # valor hora
+    valor_hora = salario / 240  # 240 = 30 días * 8 horas
 
-    liquidacion = _DummyLiquidacion()
+    # recargos
+    he_diurnas = he_d * valor_hora * 1.25
+    he_nocturnas = he_n * valor_hora * 1.75
+    he_dominicales = he_dom * valor_hora * 2.0
 
+    aux_transporte = 162000 if aux else 0  # valor fijo 2025 (ejemplo)
+
+    return salario_base + he_diurnas + he_nocturnas + he_dominicales + aux_transporte
+
+
+def calcular_provisiones(salario, dias):
+    # cesantías + intereses + primas + vacaciones (aproximado proporcional)
+    base = salario / 30 * dias
+    cesantias = base * 0.0833
+    intereses = cesantias * 0.01
+    primas = base * 0.0833
+    vacaciones = base * 0.0417
+    return cesantias + intereses + primas + vacaciones
+
+
+def calcular_aportes_empleador(salario):
+    salud = salario * 0.085
+    pension = salario * 0.12
+    arl = salario * 0.00522
+    parafiscales = salario * 0.09
+    return salud + pension + arl + parafiscales
+
+
+# ===============================
+# Interfaz Kivy
+# ===============================
 
 class NominaForm(BoxLayout):
     resultado_texto = StringProperty("")
@@ -61,7 +72,6 @@ class NominaForm(BoxLayout):
         grid = GridLayout(cols=2, row_force_default=True, row_default_height=40, spacing=8, size_hint_y=None)
         grid.bind(minimum_height=grid.setter('height'))
 
-        # Campos de entrada
         grid.add_widget(Label(text='Nombre del empleado:'))
         self.nombre_input = TextInput(multiline=False)
         grid.add_widget(self.nombre_input)
@@ -93,7 +103,7 @@ class NominaForm(BoxLayout):
         aux_box.add_widget(Label(text='Sí'))
         grid.add_widget(aux_box)
 
-        # Botón calcular
+        # Botones
         btn_box = BoxLayout(size_hint=(1, None), height=48)
         calc_btn = Button(text='Calcular nómina', on_release=self.calcular_nomina)
         btn_box.add_widget(calc_btn)
@@ -101,13 +111,12 @@ class NominaForm(BoxLayout):
         clear_btn = Button(text='Limpiar', on_release=self.limpiar_campos)
         btn_box.add_widget(clear_btn)
 
-        # Resultado (ScrollView con Label para texto multilínea)
+        # Resultado
         sv = ScrollView(size_hint=(1, 1))
         self.result_label = Label(text=self.resultado_texto, markup=True, size_hint_y=None, valign='top')
         self.result_label.bind(texture_size=self._update_result_height)
         sv.add_widget(self.result_label)
 
-        # Añadir al layout principal
         self.add_widget(grid)
         self.add_widget(btn_box)
         self.add_widget(sv)
@@ -136,9 +145,9 @@ class NominaForm(BoxLayout):
             he_dom = int(self.he_dominicales.text) if self.he_dominicales.text.strip() else 0
             aux = bool(self.aux_checkbox.active)
 
-            neto = liquidacion.calcular_neto_a_pagar(salario, dias, he_d, he_n, he_dom, aux)
-            provisiones = liquidacion.calcular_provisiones(salario, dias)
-            aportes = liquidacion.calcular_aportes_empleador(salario)
+            neto = calcular_neto_a_pagar(salario, dias, he_d, he_n, he_dom, aux)
+            provisiones = calcular_provisiones(salario, dias)
+            aportes = calcular_aportes_empleador(salario)
 
             texto = (
                 f"[b]Resultados para:[/b] {nombre}\n"
@@ -146,9 +155,6 @@ class NominaForm(BoxLayout):
                 f"[b]Total provisiones:[/b] ${provisiones:,.2f}\n"
                 f"[b]Aportes del empleador:[/b] ${aportes:,.2f}\n"
             )
-
-            if not _HAS_LIQ:
-                texto += "\n[i]Nota: se está usando una implementación de respaldo porque `src.model.liquidacion` no fue encontrada.[/i]\n"
 
             self.result_label.text = texto
 
