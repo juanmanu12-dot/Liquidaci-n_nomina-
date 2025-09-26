@@ -5,9 +5,14 @@ from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.popup import Popup
 
-
 import sys
 sys.path.append("src")
+
+from model.liquidacion import (
+    calcular_neto_a_pagar,
+    calcular_provisiones,
+    calcular_aportes_empleador
+)
 
 class NominaApp(App):
     def build(self):
@@ -47,7 +52,7 @@ class NominaApp(App):
 
         return contenedor
 
-    def calcular_nomina(self, instance):
+    def calcular_nomina(self, sender):
         try:
             self.validar()
 
@@ -58,14 +63,15 @@ class NominaApp(App):
             he_dom = int(self.he_dominicales.text)
             aux = bool(int(self.aux.text))
 
-            neto = calcular_neto_a_pagar(salario, dias, he_d, he_n, he_dom, aux)
-            provisiones = calcular_provisiones(salario, dias)
-            aportes = calcular_aportes_empleador(salario)
+          
+            neto_pagar = calcular_neto_a_pagar(salario, dias, he_d, he_n, he_dom, aux)
+            valor_provisiones = calcular_provisiones(salario, dias)
+            valor_aportes = calcular_aportes_empleador(salario)
 
             self.resultado.text = (
-                f"Neto a pagar: ${neto:,.2f}\n"
-                f"Provisiones: ${provisiones:,.2f}\n"
-                f"Aportes empleador: ${aportes:,.2f}"
+                f"Neto a pagar: ${neto_pagar:,.2f}\n"
+                f"Provisiones: ${valor_provisiones:,.2f}\n"
+                f"Aportes empleador: ${valor_aportes:,.2f}"
             )
 
         except ValueError:
