@@ -123,6 +123,28 @@ python src/view/interfaz.py
 4.Ingresa los datos solicitados en la consola para simular la liquidacion de nomina 
 Esto iniciará la interfaz de consola y podrás realizar simulaciones directamente desde la terminal
 
+
+
+## Cómo ejecutar la aplicación con interfaz gráfica (ejecutable .exe)
+
+Ya se incluye un ejecutable para Windows generado con **PyInstaller**.  
+No es necesario tener Python instalado para usarlo.
+
+1. Navega a la carpeta:
+
+```
+src/view/dist/
+```
+
+2. Dentro encontrarás el archivo:
+
+```
+NominaApp.exe
+```
+
+3. Haz doble clic en `NominaApp.exe` y se abrirá la interfaz gráfica para calcular la nómina.
+
+
 ## Cómo ejecutar los tests
 
 1.Abre la terminal ya sea en Visual Studio Code o usando cmd.

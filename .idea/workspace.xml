@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9d74bfc-c809-4b5f-88eb-3fb90557b8af" name="Changes" comment="correcciond e isues">
-      <change afterPath="$PROJECT_DIR$/.idea/Liquidaci-n_nomina-.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pyment_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pyment_gui.py" afterDir="false" />
-    </list>
+    <list default="true" id="c9d74bfc-c809-4b5f-88eb-3fb90557b8af" name="Changes" comment="Agregar ejecutable.exe" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,39 +40,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python tests.Python tests for LiquidacionNomina.test.pruebas.TestLiquidacionNomina.test_neto_sin_extras_con_auxilio.executor": "Run",
-    "Python tests.Python tests for modulos.TestLiquidacionNomina.test_caso_normal_1.executor": "Run",
-    "Python tests.Python tests for pruebas.TestLiquidacionNomina.test_caso_normal_1.executor": "Run",
-    "Python tests.Python tests for test.pruebas.TestLiquidacionNomina.test_caso_error_4.executor": "Run",
-    "Python tests.Python tests for test.pruebas.TestLiquidacionNomina.test_caso_normal_1.executor": "Run",
-    "Python tests.Python tests in modulos.py.executor": "Run",
-    "Python tests.Python tests in pruebas.py (1).executor": "Run",
-    "Python tests.Python tests in pruebas.py.executor": "Run",
-    "Python.codigolimpio.executor": "Run",
-    "Python.interfaz (1).executor": "Run",
-    "Python.interfaz (2).executor": "Run",
-    "Python.interfaz.executor": "Run",
-    "Python.pyment_gui.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/esana/PycharmProjects/PythonProject1",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python tests.Python tests for LiquidacionNomina.test.pruebas.TestLiquidacionNomina.test_neto_sin_extras_con_auxilio.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for modulos.TestLiquidacionNomina.test_caso_normal_1.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for pruebas.TestLiquidacionNomina.test_caso_normal_1.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.pruebas.TestLiquidacionNomina.test_caso_error_4.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.pruebas.TestLiquidacionNomina.test_caso_normal_1.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in modulos.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in pruebas.py (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in pruebas.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.codigolimpio.executor&quot;: &quot;Run&quot;,
+    &quot;Python.interfaz (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.interfaz (2).executor&quot;: &quot;Run&quot;,
+    &quot;Python.interfaz.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pyment_gui.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/esana/PycharmProjects/PythonProject1&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\esana\PycharmProjects\PythonProject1\src\view" />
@@ -223,7 +217,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757475764147</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Agregar ejecutable.exe">
+      <option name="closed" value="true" />
+      <created>1759116170613</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1759116170613</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,7 +233,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="correcciond e isues" />
-    <option name="LAST_COMMIT_MESSAGE" value="correcciond e isues" />
+    <MESSAGE value="Agregar ejecutable.exe" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregar ejecutable.exe" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PythonProject1$.coverage" NAME=" Coverage Results" MODIFIED="1757076076417" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
