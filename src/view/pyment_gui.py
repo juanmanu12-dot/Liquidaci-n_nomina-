@@ -7,12 +7,9 @@ from kivy.uix.popup import Popup
 
 import sys
 sys.path.append("src")
-
-from model.liquidacion import (
-    calcular_neto_a_pagar,
+from src.model.liquidacion import (calcular_neto_a_pagar,
     calcular_provisiones,
-    calcular_aportes_empleador
-)
+    calcular_aportes_empleador)
 
 class NominaApp(App):
     def build(self):
