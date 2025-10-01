@@ -13,6 +13,7 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.checkbox import CheckBox
+from kivy.uix.popup import Popup
 from kivy.properties import StringProperty, BooleanProperty
 from kivy.core.window import Window
 
@@ -40,8 +41,12 @@ def _rgba(hex_color: str, a: float = 1.0):
     b = int(hex_color[4:6], 16) / 255.0
     return (r, g, b, a)
 
+def money(n):
+    return f"${n:,.2f}"
+
 Window.size = (700, 520)
 Window.clearcolor = _rgba(THEME["bg"])  # solo color de fondo de la ventana
+
 
 class NominaForm(BoxLayout):
     resultado_texto = StringProperty("")
@@ -162,6 +167,53 @@ class NominaForm(BoxLayout):
         self.aux_checkbox.active = False
         self.result_label.text = ''
 
+    # ---------- POPUP DE RESUMEN ----------
+    def mostrar_resumen_pago(self, nombre, neto, provisiones, aportes):
+        """
+        Muestra un popup claro con:
+        1) Neto a consignar al trabajador
+        2) Prestaciones/Provisiones (cesantías, intereses, prima, vacaciones)
+        3) Aportes del empleador (salud, pensión, ARL y parafiscales)
+        4) Costo total estimado para el empleador = neto + provisiones + aportes
+        """
+        costo_empleador = (neto or 0) + (provisiones or 0) + (aportes or 0)
+
+        try:
+            tx = THEME["text"].lstrip("#")
+            pri = THEME["primary"].lstrip("#")
+            ok = THEME["ok"].lstrip("#")
+        except Exception:
+            tx, pri, ok = "ffffff", "22d3ee", "34d399"
+
+        body = (
+            f"[b]Empleado:[/b] [color={pri}]{nombre}[/color]\n\n"
+            f"[b]1) Pago al trabajador (neto a consignar):[/b] [color={ok}]{money(neto)}[/color]\n"
+            f"[b]2) Prestaciones sociales a provisionar:[/b] {money(provisiones)}\n"
+            f"[b]3) Aportes obligatorios del empleador:[/b] {money(aportes)}\n"
+            f"[b]Costo total estimado para el empleador:[/b] [color={pri}]{money(costo_empleador)}[/color]\n\n"
+            f"[b]Notas:[/b]\n"
+            f"• [b]Prestaciones/Provisiones[/b]: cesantías, intereses de cesantías, prima y vacaciones proporcionales.\n"
+            f"• [b]Aportes del empleador[/b]: salud, pensión, ARL y parafiscales (según aplique).\n"
+            f"• El costo estimado suma (1)+(2)+(3). Las deducciones del trabajador ya están descontadas del neto."
+        )
+
+        content = BoxLayout(orientation="vertical", spacing=10, padding=12)
+        lbl = Label(text=body, markup=True, halign="left", valign="top", color=_rgba(THEME["text"]))
+        lbl.bind(size=lambda i, v: setattr(i, "text_size", v))
+        content.add_widget(lbl)
+
+        btn_cerrar = Button(text="Cerrar")
+        content.add_widget(btn_cerrar)
+
+        popup = Popup(
+            title="Resumen de pago y costo para el empleador",
+            content=content,
+            size_hint=(0.85, 0.8),
+            auto_dismiss=False,
+        )
+        btn_cerrar.bind(on_release=lambda *_: popup.dismiss())
+        popup.open()
+
     def calcular_nomina(self, *args):
         try:
             nombre = self.nombre_input.text.strip() or '---'
@@ -172,22 +224,25 @@ class NominaForm(BoxLayout):
             he_dom = int(self.he_dominicales.text) if self.he_dominicales.text.strip() else 0
             aux = bool(self.aux_checkbox.active)
 
-            # Mantengo tus llamadas tal cual (sin prefijos)
+            # Mantengo tus llamadas tal cual (con prefijo del módulo)
             neto = liquidacion.calcular_neto_a_pagar(salario, dias, he_d, he_n, he_dom, aux)
             provisiones = liquidacion.calcular_provisiones(salario, dias)
             aportes = liquidacion.calcular_aportes_empleador(salario)
 
-            # Colores en el texto (markup usa hex sin #)
+            # Mini resumen en el panel inferior
             ok_hex = THEME["ok"].lstrip("#")
             primary_hex = THEME["primary"].lstrip("#")
 
             texto = (
                 f"[b]Resultados para:[/b] [color={primary_hex}]{nombre}[/color]\n"
-                f"[b]Neto a pagar:[/b] [color={ok_hex}]${neto:,.2f}[/color]\n"
-                f"[b]Total provisiones:[/b] ${provisiones:,.2f}\n"
-                f"[b]Aportes del empleador:[/b] ${aportes:,.2f}\n"
+                f"[b]Neto a pagar:[/b] [color={ok_hex}]{money(neto)}[/color]\n"
+                f"[b]Total provisiones:[/b] {money(provisiones)}\n"
+                f"[b]Aportes del empleador:[/b] {money(aportes)}\n"
             )
             self.result_label.text = texto
+
+            # Popup explicativo claro
+            self.mostrar_resumen_pago(nombre, neto, provisiones, aportes)
 
         except ValueError:
             err_hex = THEME["error"].lstrip("#")
@@ -204,5 +259,6 @@ class NominaApp(App):
 
 if __name__ == '__main__':
     NominaApp().run()
+
 
 
