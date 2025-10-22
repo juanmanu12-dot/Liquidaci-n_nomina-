@@ -166,7 +166,8 @@ py  test/ pruebas.py
 ```
 Esto ejecutará todas las pruebas y mostrará los resultados
 
-
+## ejecucion de la base de datos 
+------
 
 ##  Beneficios del proyecto
 
