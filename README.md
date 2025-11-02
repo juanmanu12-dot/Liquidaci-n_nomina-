@@ -181,3 +181,37 @@ Esto ejecutará todas las pruebas y mostrará los resultados
 * moises Joshua Herrera Galindo 
 * Nicol Valeria Atehortua Atehortua 
 * Francisco Gomes Gomes
+
+# 💼 Proyecto: Liquidación de Nómina
+
+Aplicación en Python conectada a **PostgreSQL** para gestionar liquidaciones de empleados.
+
+---
+
+## ⚙️ Requisitos
+- Python 3.10 o superior
+- PostgreSQL (con extensión de Microsoft o cliente normal)
+- Librerías necesarias:
+  ```bash
+  pip install psycopg2-binary python-dotenv
+
+
+
+  DB_HOST=localhost
+DB_USER=tu_usuario
+DB_PASSWORD=tu_contraseña
+DB_NAME=nombre_de_tu_base
+DB_PORT=5432
+
+##🚀 Ejecución
+
+python app.py
+
+Se mostrará un menú con opciones para
+Insertar una nueva liquidación.
+Buscar registros existentes.
+Modificar el total a pagar.
+
+
+SELECT * FROM liquidacion_nomina;
+
