@@ -197,15 +197,15 @@ Aplicación en Python conectada a **PostgreSQL** para gestionar liquidaciones de
 
 
 
-  DB_HOST=localhost
-DB_USER=tu_usuario
-DB_PASSWORD=tu_contraseña
-DB_NAME=nombre_de_tu_base
-DB_PORT=5432
+-DB_HOST=localhost.
+-DB_USER=tu_usuario
+-DB_PASSWORD=tu_contraseña
+-DB_NAME=nombre_de_tu_base
+-DB_PORT=5432
 
-##🚀 Ejecución
-
-python app.py
+## 🚀 Ejecución
+   ```bash
+  python app.py
 
 Se mostrará un menú con opciones para
 Insertar una nueva liquidación.
