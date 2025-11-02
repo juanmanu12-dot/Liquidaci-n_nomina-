@@ -203,15 +203,18 @@ Aplicación en Python conectada a **PostgreSQL** para gestionar liquidaciones de
 -DB_NAME=nombre_de_tu_base
 -DB_PORT=5432
 
-## 🚀 Ejecución
-   ```bash
-  python app.py
-
 Se mostrará un menú con opciones para
 Insertar una nueva liquidación.
 Buscar registros existentes.
 Modificar el total a pagar.
 
+## Para filtrar los datos ingresados 
 
 SELECT * FROM liquidacion_nomina;
+
+
+
+## 🚀 Ejecución
+```bash
+  python app.py  
 
