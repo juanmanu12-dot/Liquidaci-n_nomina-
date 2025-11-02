@@ -21,7 +21,7 @@ La aplicación reduce errores humanos, optimiza el tiempo administrativo y garan
 
 ⚙️ Requisitos previos
 
-Python 3.8+
+Tener instalado Python 3.8+
 
 Sistema operativo Windows, Linux o MacOS
 
@@ -120,7 +120,7 @@ Copia la cadena de conexión externa, por ejemplo:
 postgresql://empresa:contraseña@dpg-xxxxx-a.virginia-postgres.render.com/liquidacion_nomina
 
 
-En el archivo .env de tu proyecto, agrega:
+En el archivo .env agrega:
 
 DB_HOST=dpg-xxxxx-a.virginia-postgres.render.com
 DB_NAME=liquidacion_nomina
@@ -129,7 +129,7 @@ DB_PASSWORD=tu_contraseña
 DB_PORT=5432
 
 
-En src/config_db.py asegúrate de cargar correctamente:
+En src/config_db.py asegúrate de tener:
 
 from dotenv import load_dotenv
 import os
@@ -155,7 +155,7 @@ Pégalo en el panel SQL y ejecuta (F5).
 
 Si prefieres usar PostgreSQL localmente:
 
-Crea una base de datos llamada:
+Crea la base de datos:
 
 CREATE DATABASE liquidacion_nomina;
 
@@ -177,13 +177,13 @@ También puedes ejecutar el archivo auxiliar:
 python run_tests.py
 
 
-Si todo está correcto, deberías ver:
+Si todo está correcto, deberías ver algo como:
 
 Ran 7 tests in 4.003s
 OK
 
 
-Entre las pruebas incluidas están:
+Las pruebas incluidas verifican:
 
 Conexión a la base de datos (Render o local)
 
@@ -214,10 +214,10 @@ Inicia sesión en tu cuenta de Render o PostgreSQL local.
 
 Abre el panel de consultas SQL.
 
-Ejecuta las sentencias anteriores para verificar los registros insertados por el sistema.
+Ejecuta las sentencias anteriores para verificar los registros insertados.
 
 🧰 Cómo ejecutar la aplicación
-🖥️ Consola
+🖥️ Por consola
 python src/view/interfaz.py
 
 
@@ -238,16 +238,34 @@ Ejecutar:
 NominaApp.exe
 
 
-La aplicación se abrirá con una interfaz amigable.
+La aplicación se abrirá con una interfaz gráfica para calcular la nómina.
+
+📊 Ejemplo de ejecución de pruebas
+test_conexion_exitosa ... OK
+test_creacion_tablas ... OK
+test_insertar_empleado ... OK
+test_listar_empleados ... OK
+test_registro_liquidacion ... OK
+----------------------------------------------------------------------
+Ran 7 tests in 4.003s
+OK
+
+
+✅ Esto confirma que todas las funciones principales y la conexión a la base de datos están operando correctamente.
 
 🧾 Beneficios del proyecto
 
-✅ Automatiza el cálculo de nómina
-✅ Reduce errores humanos
-✅ Cumple con la normatividad laboral
-✅ Permite conexión con base de datos externa (Render)
-✅ Incluye pruebas unitarias automáticas
-✅ Cuenta con interfaz gráfica y versión ejecutable (.exe)
+Automatiza el cálculo de nómina
+
+Reduce errores humanos
+
+Cumple con la normatividad laboral vigente
+
+Permite conexión con base de datos externa (Render o local)
+
+Incluye pruebas unitarias automatizadas
+
+Incluye interfaz gráfica (.exe) y por consola
 
 👨‍💻 Integrantes
 
@@ -257,5 +275,4 @@ Nicol Valeria Atehortua Atehortua
 
 Francisco Gomes Gomes
 
-
-
+✅ Proyecto completamente funcional con conexión a base de datos, interfaz y pruebas unitarias exitosas.
