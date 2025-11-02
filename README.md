@@ -1,81 +1,95 @@
-💼 Liquidación de Nómina
-🧾 ¿Qué es la liquidación de nómina?
+#  Liquidación de Nómina
 
-La liquidación de nómina es el proceso administrativo mediante el cual una empresa calcula y paga correctamente las remuneraciones a sus empleados, cumpliendo con las obligaciones laborales y legales establecidas.
+##  ¿Qué es la liquidación de nómina?
+
+La liquidación de nómina es el proceso administrativo mediante el cual una empresa calcula y paga de manera correcta las remuneraciones a sus empleados, cumpliendo con las obligaciones laborales y legales establecidas.
 
 Este proyecto está diseñado para automatizar y facilitar el cálculo de la nómina, permitiendo registrar y procesar de forma precisa elementos como:
 
-Sueldo base
+* Sueldo base
+* Horas extra (diurnas, nocturnas, dominicales/festivas)
+* Auxilio de transporte
+* Deducciones obligatorias (salud y pensión)
+* Aportes del empleador
+* Provisiones (cesantías, prima, vacaciones, intereses a las cesantías)
 
-Horas extra (diurnas, nocturnas, dominicales/festivas)
+La aplicación no solo reduce errores humanos y el tiempo invertido en tareas administrativas, sino que también asegura el cumplimiento de las normativas laborales y tributarias vigentes en cada país.
 
-Auxilio de transporte
+---
 
-Deducciones obligatorias (salud y pensión)
+##  Fórmulas empleadas
 
-Aportes del empleador
+### 1. Valor hora
 
-Provisiones (cesantías, prima, vacaciones, intereses a las cesantías)
-
-La aplicación reduce errores humanos, optimiza el tiempo administrativo y garantiza el cumplimiento de las normativas laborales y tributarias vigentes.
-
-⚙️ Requisitos previos
-
-Tener instalado Python 3.8+
-
-Sistema operativo Windows, Linux o MacOS
-
-Tener instalado PostgreSQL o acceso a una base de datos Render PostgreSQL
-
-Instalar dependencias del proyecto:
-
-pip install -r requirements.txt
-
-🧮 Fórmulas empleadas
-1️⃣ Valor hora
+```
 valor_hora = salario / (30 * 8)
+```
 
-2️⃣ Horas extra
+### 2. Horas extra
 
-Diurna:
+* Extra diurna:
 
+```
 extra_d = horas_extra_d * valor_hora * 1.25
+```
 
+* Extra nocturna:
 
-Nocturna:
-
+```
 extra_n = horas_extra_n * valor_hora * 1.75
+```
 
+* Extra dominical/festiva:
 
-Dominical o festiva:
-
+```
 extra_dom = horas_extra_dom * valor_hora * 2
+```
 
-3️⃣ Salario proporcional a días trabajados
+### 3. Salario proporcional a días trabajados
+
+```
 salario_base = salario * dias / 30
+```
 
-4️⃣ Auxilio de transporte
+### 4. Auxilio de transporte
+
+```
 aux = 162000 (si aplica)
+```
 
-5️⃣ Total ingresos
+### 5. Total ingresos
+
+```
 total_ingresos = salario_base + aux + extra_d + extra_n + extra_dom
+```
 
-6️⃣ Deducciones (empleado)
+### 6. Deducciones (empleado)
+
+```
 salud = salario_base * 0.04
 pension = salario_base * 0.04
 deducciones = salud + pension
+```
 
-7️⃣ Neto a pagar
+### 7. Neto a pagar
+
+```
 neto = total_ingresos - deducciones
+```
 
-8️⃣ Provisiones (prestaciones sociales)
+### 8. Provisiones (prestaciones sociales)
+
+```
 cesantias = salario * dias / 360
 intereses = cesantias * 0.12
 prima = salario * dias / 360
 vacaciones = salario * dias / 720
 total_provisiones = cesantias + intereses + prima + vacaciones
+```
 
-9️⃣ Aportes del empleador
+### 9. Aportes del empleador
+
+```
 salud = salario * 0.085
 pension = salario * 0.12
 ARL = salario * 0.0052
@@ -83,196 +97,87 @@ caja = salario * 0.04
 ICBF = salario * 0.03
 SENA = salario * 0.02
 total_aportes = salud + pension + ARL + caja + ICBF + SENA
+```
 
-🗂️ Estructura del proyecto
-Liquidaci-n_nomina-
-│
-├── src/
-│   ├── controller/
-│   ├── model/
-│   │   ├── liquidacion.py
-│   │   ├── empleado.py
-│   │   ├── database.py
-│   │   └── config_db.py
-│   ├── view/
-│   │   └── interfaz.py
-│   └── create_tables.sql
-│
-├── test/
-│   ├── test_database.py
-│   ├── test_empleado.py
-│   ├── test_liquidacion.py
-│   └── pruebas.py
-│
-├── .env
-├── run_tests.py
-├── requirements.txt
-└── README.md
+---
+## Requisitos previos
+* se necesita Python 3.8+ instalado.
+*Sistema operativo Windows, Linux o MacOS
 
-🧱 Ejecución y configuración de la base de datos
-🔹 Opción 1: Base de datos externa (Render PostgreSQL)
+## instrucciones de uso
+-clonar el repositorio:https://github.com/juanmanu12-dot/Liquidaci-n_nomina-.git -Entrar al proyecto: Liquidaci-n_nomina- -Ejecutar el programa:python main.py -Ejecutar pruebas unitarias: python -m unittest discover
 
-Crea una base de datos en Render
-.
+## Cómo ejecutar la aplicación en consola
+1.Abre la terminal en Visual Studio Code.
+2.Navega a la carpeta raíz del proyecto:
 
-Copia la cadena de conexión externa, por ejemplo:
+```bash
+cd "Liquidaci-n_nomina-" (entras a la carpeta principal)
+```
+3.Ejecuta el archivo principal de la interfaz
 
-postgresql://empresa:contraseña@dpg-xxxxx-a.virginia-postgres.render.com/liquidacion_nomina
-
-
-En el archivo .env agrega:
-
-DB_HOST=dpg-xxxxx-a.virginia-postgres.render.com
-DB_NAME=liquidacion_nomina
-DB_USER=empresa
-DB_PASSWORD=tu_contraseña
-DB_PORT=5432
-
-
-En src/config_db.py asegúrate de tener:
-
-from dotenv import load_dotenv
-import os
-load_dotenv()
-
-DATABASE_URL = f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
-
-
-Ejecuta el script SQL para crear las tablas:
-
-psql < src/create_tables.sql
-
-
-O usa pgAdmin:
-
-Abre tu base de datos Render.
-
-Copia el contenido del archivo create_tables.sql.
-
-Pégalo en el panel SQL y ejecuta (F5).
-
-🔹 Opción 2: Base de datos local
-
-Si prefieres usar PostgreSQL localmente:
-
-Crea la base de datos:
-
-CREATE DATABASE liquidacion_nomina;
-
-
-Ejecuta:
-
-psql -U postgres -d liquidacion_nomina -f src/create_tables.sql
-
-🧪 Ejecución de pruebas unitarias
-
-Desde la raíz del proyecto:
-
-set PYTHONPATH=%cd%
-python -m unittest discover -s test -p "test_*.py" -v
-
-
-También puedes ejecutar el archivo auxiliar:
-
-python run_tests.py
-
-
-Si todo está correcto, deberías ver algo como:
-
-Ran 7 tests in 4.003s
-OK
-
-
-Las pruebas incluidas verifican:
-
-Conexión a la base de datos (Render o local)
-
-Creación de tablas
-
-Registro y listado de empleados
-
-Registro de liquidación
-
-Cálculo de nómina y provisiones
-
-🧭 Visualizar los datos en la base de datos
-
-Puedes consultar los registros creados por los tests.
-
-Con psql:
-psql -h dpg-xxxxx-a.virginia-postgres.render.com -U empresa -d liquidacion_nomina
-
-
-Luego dentro de PostgreSQL:
-
-SELECT * FROM empleados;
-SELECT * FROM liquidaciones;
-
-Con pgAdmin:
-
-Inicia sesión en tu cuenta de Render o PostgreSQL local.
-
-Abre el panel de consultas SQL.
-
-Ejecuta las sentencias anteriores para verificar los registros insertados.
-
-🧰 Cómo ejecutar la aplicación
-🖥️ Por consola
+```bash
 python src/view/interfaz.py
+```
+
+4.Ingresa los datos solicitados en la consola para simular la liquidacion de nomina 
+Esto iniciará la interfaz de consola y podrás realizar simulaciones directamente desde la terminal
 
 
-Se abrirá la interfaz por consola para ingresar los datos del empleado y calcular la liquidación.
 
-💻 Interfaz gráfica (.exe)
+## Cómo ejecutar la aplicación con interfaz gráfica (ejecutable .exe)
 
-El proyecto incluye un ejecutable generado con PyInstaller.
-No se requiere Python instalado.
+Ya se incluye un ejecutable para Windows generado con **PyInstaller**.  
+No es necesario tener Python instalado para usarlo.
 
-Ir a la carpeta:
+1. Navega a la carpeta:
 
+```
 src/view/dist/
+```
 
+2. Dentro encontrarás el archivo:
 
-Ejecutar:
-
+```
 NominaApp.exe
+```
+
+3. Haz doble clic en `NominaApp.exe` y se abrirá la interfaz gráfica para calcular la nómina.
 
 
-La aplicación se abrirá con una interfaz gráfica para calcular la nómina.
+## Cómo ejecutar los tests
 
-📊 Ejemplo de ejecución de pruebas
-test_conexion_exitosa ... OK
-test_creacion_tablas ... OK
-test_insertar_empleado ... OK
-test_listar_empleados ... OK
-test_registro_liquidacion ... OK
-----------------------------------------------------------------------
-Ran 7 tests in 4.003s
-OK
+1.Abre la terminal ya sea en Visual Studio Code o usando cmd.
+2.Navega a la carpeta del proyecto(Por Ejemplo):
+```bash
+cmd
+cd "Liquidaci-n_nomina-"
+```
+
+3.Ejecuta el archivo de test con unittest:
+cmd
+py test/test_Liquidaci-n_nomina-.py
 
 
-✅ Esto confirma que todas las funciones principales y la conexión a la base de datos están operando correctamente.
+Para ejecutar las pruebas, desde la raíz del proyecto:
 
-🧾 Beneficios del proyecto
+```bash
+py  test/ pruebas.py
+```
+Esto ejecutará todas las pruebas y mostrará los resultados
 
-Automatiza el cálculo de nómina
+## ejecucion de la base de datos 
+------
 
-Reduce errores humanos
+##  Beneficios del proyecto
 
-Cumple con la normatividad laboral vigente
+* Automatiza el cálculo de nómina.
+* Reduce errores humanos.
+* Cumple con normativas laborales vigentes.
+* Permite pruebas automatizadas para asegurar la precisión de los cálculos.
 
-Permite conexión con base de datos externa (Render o local)
+## Integrantes 
 
-Incluye pruebas unitarias automatizadas
-
-Incluye interfaz gráfica (.exe) y por consola
-
-👨‍💻 Integrantes
-
-Moises Joshua Herrera Galindo
-
-Nicol Valeria Atehortua Atehortua
-
-Francisco Gomes Gomes
-
-✅ Proyecto completamente funcional con conexión a base de datos, interfaz y pruebas unitarias exitosas.
+* moises Joshua Herrera Galindo 
+* Nicol Valeria Atehortua Atehortua 
+* Francisco Gomes Gomes
