@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado de Liquidación</title>
+</head>
+
+<body>
+    <h1>Resultado de la Liquidación</h1>
+    {% if total %}
+        <p>✅ Liquidación registrada correctamente.</p>
+        <p><strong>ID generado:</strong> {{ total }}</p>
+    {% else %}
+        <p>⚠️ Ocurrió un error al calcular la liquidación.</p>
+    {% endif %}
+    <a href="/">Volver</a>
+</body>
+</html>
