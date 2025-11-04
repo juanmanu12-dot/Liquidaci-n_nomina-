@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Nuevo Usuario</title>
+  <style>
+    body{font-family:Arial, sans-serif;background:#eef4fb;margin:0}
+    .wrap{max-width:520px;margin:60px auto;background:#fff;padding:24px;border-radius:10px;box-shadow:0 6px 12px rgba(0,0,0,.1)}
+    h2{color:#0f2957;text-align:center}
+    label{display:block;margin-top:10px;color:#2f4d76;font-weight:bold}
+    input{width:100%;padding:10px;margin-top:5px;border-radius:6px;border:1px solid #ccd9e8}
+    button{margin-top:18px;width:100%;background:#0b5ed7;color:#fff;border:none;padding:12px;border-radius:8px;font-weight:bold;cursor:pointer}
+    button:hover{background:#094bab}
+    .back{text-align:center;margin-top:10px}
+    .back a{color:#0b5ed7;text-decoration:none}
+    .back a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h2>Registrar Usuario</h2>
+    <form method="POST" action="/usuarios/nuevo">
+      <label>Nombre</label>
+      <input type="text" name="nombre" required>
+      <label>Documento</label>
+      <input type="text" name="documento" required>
+      <button type="submit">Guardar</button>
+    </form>
+    <div class="back"><a href="/usuarios">← Volver a Usuarios</a></div>
+  </div>
+</body>
+</html>

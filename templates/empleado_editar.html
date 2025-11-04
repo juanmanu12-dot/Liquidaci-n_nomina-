@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Empleado</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef4fb;
+      text-align: center;
+    }
+    h2 {
+      color: #003366;
+    }
+    form {
+      display: inline-block;
+      margin-top: 30px;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    input, button {
+      display: block;
+      margin: 10px auto;
+      padding: 8px;
+      width: 250px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1e7e34;
+    }
+    a {
+      display: block;
+      margin-top: 20px;
+      color: #007bff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>Editar Empleado</h2>
+
+  <form action="/empleado/actualizar" method="POST">
+    <input type="hidden" name="id" value="{{ empleado[0] }}">
+    <input type="text" name="nombre" value="{{ empleado[1] }}" required>
+    <input type="text" name="cargo" value="{{ empleado[2] }}" required>
+    <input type="number" step="0.01" name="salario" value="{{ empleado[3] }}" required>
+    <button type="submit">Guardar Cambios</button>
+  </form>
+
+  <a href="/empleados">⬅ Volver a empleados</a>
+</body>
+</html>
