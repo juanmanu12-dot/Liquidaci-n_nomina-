@@ -214,7 +214,90 @@ SELECT * FROM liquidacion_nomina;
 
 
 
-## 🚀 Ejecución
+##  Ejecución
 ```bash
-  python app.py  
+  python app.py
+```
+
+##  Cómo Ejecutar la Aplicación Localmente
+
+Sigue estos pasos para configurar y ejecutar el proyecto en tu máquina local, conectándote a tu base de datos en Render.
+
+### 1. Prerrequisitos
+
+* Python 3.8 o superior.
+* Git (para clonar el repositorio).
+* Acceso a una terminal o línea de comandos.
+
+### 2. Instalación y Configuración
+
+1.  **Clona el repositorio (si aún no lo tienes):**
+    ```bash
+    git clone [https://github.com/juanmanu12-dot/Liquidaci-n_nomina-.git](https://github.com/juanmanu12-dot/Liquidaci-n_nomina-.git)
+    cd Liquidaci-n_nomina-
+    ```
+
+2.  **Crea y activa un entorno virtual:**
+    Esto es crucial para aislar las dependencias de tu proyecto.
+
+    * Crea el entorno:
+        ```bash
+        python -m venv venv
+        ```
+    * Activa el entorno (en Windows/PowerShell):
+        ```bash
+        .\venv\Scripts\Activate
+        ```
+    * *(Si usas macOS/Linux)*:
+        ```bash
+        source venv/bin/activate
+        ```
+
+3.  **Instala las librerías:**
+    Con el entorno activado, instala todas las dependencias:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+### 3. Configuración de la Base de Datos
+
+1.  **Crea el archivo `.env`:**
+    En la carpeta raíz del proyecto, crea un archivo llamado `.env` (¡empieza con un punto!).
+
+2.  **Añade tus credenciales:**
+    Copia y pega las siguientes variables de entorno de tu base de datos de Render en el archivo `.env`.
+
+    ```
+    # Credenciales de la Base de Datos en Render
+    DB_HOST=dpg-d3pam78dl3ps73b1epb0-a.virginia-postgres.render.com
+    DB_NAME=liquidacion_nomina
+    DB_USER=empresa
+    DB_PASSWORD=OWOunvMbvvOv19j8GraKpQA0T26ASrUf
+    DB_PORT=5432
+    DATABASE_URL=postgresql://empresa:OWOunvMbvvOv19j8GraKpQA0T26ASrUf@dpg-d3pam78dl3ps73b1epb0-a.virginia-postgres.render.com:5432/liquidacion_nomina?sslmode=require
+    ```
+
+3.  **¡Importante!** Asegúrate de que tu archivo `.gitignore` contenga la línea `.env` para evitar subir tus contraseñas a GitHub.
+
+### 4. Ejecución e Inicialización
+
+1.  **Inicia el servidor:**
+    Ejecuta la aplicación Flask:
+    ```bash
+    python app.py
+    ```
+    Verás un mensaje en la terminal indicando que el servidor está corriendo, usualmente en `http://127.0.0.1:5000/` o `http://127.0.0.1:5001/`.
+
+2.  **Inicializa la Base de Datos (¡Solo una vez!)**
+    Para configurar tu **base de datos en blanco**, abre tu navegador y ve a la siguiente URL. Esto ejecutará el script que crea las tablas `usuarios` y `liquidaciones`.
+
+     **`http://127.0.0.1:5001/crear_tablas`**
+    *(Reemplaza `5001` por el puerto que te indique tu terminal si es diferente)*.
+
+    Verás un mensaje de éxito o serás redirigido al inicio.
+
+3.  **¡Listo!**
+    Ahora puedes acceder a la aplicación principal y empezar a usarla.
+    
+     **`http://127.0.0.1:5001/`**
 
