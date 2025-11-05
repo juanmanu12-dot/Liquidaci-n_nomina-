@@ -3,6 +3,7 @@
 # --------------------------------------------
 import unittest
 import sys, os
+from src.database import get_connection
 
 # Agregar la ruta de src al path
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -38,13 +39,40 @@ class TestEmpleado(unittest.TestCase):
     def test_eliminar(self):
         print("\n🗑️ Probando eliminación de empleado...")
         empleados = Empleado.listar()
-        if empleados:
-            ultimo_id = empleados[-1][0]
-            eliminado = Empleado.eliminar(ultimo_id)
-            self.assertTrue(eliminado, "❌ No se eliminó el empleado correctamente.")
-        else:
+        
+        if not empleados:
             self.skipTest("⚠️ No hay empleados para eliminar.")
+            return
 
+        # Asumimos que el último empleado es el que tiene la dependencia
+        ultimo_id = empleados[-1][0] 
+        conn = None
+
+        try:
+            # --- INICIO DE LA CORRECCIÓN ---
+            # 1. Conectarse y limpiar las liquidaciones de ese empleado
+            print(f"🧹 Limpiando dependencias (liquidaciones) para el empleado ID: {ultimo_id}...")
+            conn = get_connection()
+            cur = conn.cursor()
+            cur.execute("DELETE FROM liquidaciones WHERE empleado_id = %s", (ultimo_id,))
+            conn.commit()
+            cur.close()
+            # --- FIN DE LA CORRECCIÓN ---
+
+            # 2. Ahora sí, intentar eliminar al empleado
+            print(f"🗑️ Eliminando al empleado ID: {ultimo_id}...")
+            eliminado = Empleado.eliminar(ultimo_id)
+            self.assertTrue(eliminado, "❌ No se eliminó el empleado (incluso después de limpiar dependencias).")
+            print("✅ Empleado eliminado correctamente.")
+
+        except Exception as e:
+            if conn:
+                conn.rollback()
+            # Falla la prueba si hay cualquier error
+            self.fail(f"❌ Error durante la eliminación: {e}") 
+        finally:
+            if conn:
+                conn.close()
 
 if __name__ == "__main__":
     unittest.main()
