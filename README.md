@@ -294,6 +294,15 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu máquina local, c
      **`http://127.0.0.1:5001/crear_tablas`**
     *(Reemplaza `5001` por el puerto que te indique tu terminal si es diferente)*.
 
+
+
+##Para ejecutar las pruebas ejecuta el siguiente comando 
+
+  ```bash
+  python -m pytest -s
+  ``` 
+
+
     Verás un mensaje de éxito o serás redirigido al inicio.
 
 3.  **¡Listo!**
