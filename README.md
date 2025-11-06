@@ -304,6 +304,12 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu máquina local, c
 
 
     Verás un mensaje de éxito o serás redirigido al inicio.
+## para ejecutar todas las pruebas dentro de la carpeta test es con el siguiente comando
+
+    ```bash
+    python -m unittest discover -s test -p "test_*.py"
+
+    ``` 
 
 3.  **¡Listo!**
     Ahora puedes acceder a la aplicación principal y empezar a usarla.
